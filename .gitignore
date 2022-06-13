@@ -9,9 +9,9 @@
 .DS_Store
 *._.DS_Store
 ._*
-miRdup/*
-!miRdup/readme.txt
-SMIRP/*
-!SMIRP/readme.txt
-TarPmiR/*
-!TarPmiR/readme.txt
+progs/miRdup/*
+!progs/miRdup/smirp_readme.txt
+progs/SMIRP/*
+!progs/SMIRP/readme.txt
+progs/TarPmiR/*
+!progs/TarPmiR/readme.txt
