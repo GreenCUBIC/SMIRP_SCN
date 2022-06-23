@@ -15,3 +15,5 @@ progs/SMIRP/*
 !progs/SMIRP/readme.txt
 progs/TarPmiR/*
 !progs/TarPmiR/readme.txt
+.idea/*
+.vscode/*

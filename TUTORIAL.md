@@ -22,7 +22,7 @@ In order to discover miRNA one must supply the model with potantial hairpins seq
 Use the `extract_sequences.py` script from the src/miRNA_Discovery folder to extract sequences from the genome of the target organism.
 
 `python3 extract_sequences.py -i <input_file> -o <output_file>`
->Ex. ```python3 src/miRNA_Discovery/extract_sequences.py -i data/candidate_set_generation/scn_genome_chromosome_8.fasta -o data/candidate_set_generation/scn_genome_chromosome_8.seq.fasta```
+>Ex. ```python3 src/miRNA_Discovery/extract_sequences.py -i data/candidate_set_generation/SCN/scn_genome_chromosome_8.fasta -o data/candidate_set_generation/SCN/scn_genome_chromosome_8.seq.fasta```
 ### Part 2.2: Extract Hairpins
 Use the `extract_hairpins.py` script within SMIRP to extract hairpins from the sequences.
 >Ex. ```python2 extract_hairpins.py -i scn_genome_chromosome_8.seq.fasta -n 10```
@@ -32,12 +32,12 @@ To reduce ultiple ocpies of the same seqeunce presnet in the candidate set of ha
 > First run cd-hit to cluster the sequences at 90% similairty
 
 >`cd-hit -i <input_fasta> -o <output_file> -c 0.9 -M <max_ram_usage> -T <number_of_treads> -d 0`
->>Ex. ```cd-hit -i data/candidate_set_generation/scn_genome_chromosome_8.seq.fasta.nr.hairpins -o data/candidate_set_generation/scn_genome_chromosome_8.seq.fasta.nr.hairpins.clustr -c 0.9 -T 16 -M 10000 -d 0```
+>>Ex. ```cd-hit -i data/candidate_set_generation/SCN/scn_genome_chromosome_8.seq.fasta.nr.hairpins -o data/candidate_set_generation/SCN/scn_genome_chromosome_8.seq.fasta.nr.hairpins.clustr -c 0.9 -T 16 -M 10000 -d 0```
 
 > Then run the `extract_representative.py` script in the src/miRNA_Discovery folder to extract the represetative hairpins
 
 >`python3 extract_representative.py -i <input_clstr_file> -f <input_fasta_file> -o <output_file>`
->>Ex. ``python3 src/miRNA_Discovery/extract_representative.py -i data/candidate_set_generation/scn_genome_chromosome_8.seq.fasta.nr.hairpins.clustr.clstr -f data/candidate_set_generation/scn_genome_chromosome_8.seq.fasta.nr.hairpins.clustr -o data/candidate_set_generation/scn_genome_chromosome_8.rep.fasta``
+>>Ex. ``python3 src/miRNA_Discovery/extract_representative.py -i data/candidate_set_generation/SCN/scn_genome_chromosome_8.seq.fasta.nr.hairpins.clustr.clstr -f data/candidate_set_generation/SCN/scn_genome_chromosome_8.seq.fasta.nr.hairpins.clustr -o data/candidate_set_generation/SCN/scn_genome_chromosome_8.rep.fasta``
 
 ### Part 2.4: Extract Festures
 Finally use the `build_hmp_features.py` script from SMIRP to extract features from the representative seqeunces
@@ -50,7 +50,7 @@ Use the train_and_predict.ipynb notebook in src/miRNA_Discovery to train your sp
 Run `create_high_confidence_list.py` to create you final high confidence pre-miRNA files
 
 `python3 create_high_confidence_list.py -i <input_file> -f <input_fasta> -o <ouput_file_prefix>`
-> Ex. `python3 src/miRNA_Discovery/create_high_confidence_list.py -i data/trained_miRNA_discovery_models/SCN/candidate_set_predictions.csv -f data/candidate_set_generation/scn_genome_chromosome_8.rep.fasta -o data/trained_miRNA_discovery_models/SCN/scn_genome_chromosome_8.rep.conf.fasta`
+> Ex. `python3 src/miRNA_Discovery/create_high_confidence_list.py -i data/trained_miRNA_discovery_models/SCN/candidate_set_predictions.csv -f data/candidate_set_generation/SCN/scn_genome_chromosome_8.rep.fasta -o data/trained_miRNA_discovery_models/SCN/scn_genome_chromosome_8.rep.conf.fasta`
 
 # microRNA Targeting
 
