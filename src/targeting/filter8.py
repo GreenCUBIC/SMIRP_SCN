@@ -2,7 +2,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 import getopt, sys
-from src.classes.FastaOperations import FastaOperations
+from FastaOperations import FastaOperations
 
 def filter8(output_folder, miRNA_fa,image_folder):
 
@@ -60,20 +60,22 @@ def main():
         print(err)  # will print something like "option -a not recognized"
         usage()
         sys.exit(2)
-    output = None
-    verbose = False
+    output_folder = None
+    miRNA_fa = None
+    mRNA_fasta = None
+    image_folder = None
     for o, a in opts:
         if o in ("-h", "--help"):
             usage()
             sys.exit()
         elif o in ("-o", "--output_folder"):
-            output_folder = a
+            output_folder = str(a)
         elif o in ("-m", "--miRNA_fasta"):
-            miRNA_fa = a
+            miRNA_fa = str(a)
         elif o in ("-r", "--mRNA_fasta"):
-            mRNA_fasta = a
+            mRNA_fasta = str(a)
         elif o in ("-p", "--image_folder"):
-            image_folder = a
+            image_folder = str(a)
         else:
             assert False, "Unhandled Option"
     filter8(output_folder, miRNA_fa,mRNA_fasta,image_folder)

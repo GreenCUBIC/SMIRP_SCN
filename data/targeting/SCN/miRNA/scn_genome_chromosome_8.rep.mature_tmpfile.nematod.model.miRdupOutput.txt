@@ -1,0 +1,10 @@
+File ../../data/targeting/SCN/miRNA/scn_genome_chromosome_8.rep.mature_tmpfile adapted in ../../data/targeting/SCN/miRNA/scn_genome_chromosome_8.rep.mature_tmpfile.arff submitted to model nematod.model
+
+Summary results of predictions
+======
+Correctly Classified Instances          40               12.6984 %
+Incorrectly Classified Instances       275               87.3016 %
+Kappa statistic                          0     
+Mean absolute error                      0.8726
+Total Number of Instances              315     
+

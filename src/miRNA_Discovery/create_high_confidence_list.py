@@ -1,4 +1,4 @@
-from src.classes.FastaOperations import FastaOperations
+from FastaOperations import FastaOperations
 import getopt, sys
 
 def create_high_confidence_list(input_file,input_fasta,output_file):
@@ -8,15 +8,15 @@ def create_high_confidence_list(input_file,input_fasta,output_file):
 
     for line in f_feature_selection:
         data = line.split(",")
-        unknown[data[1]].append(float(data[2]))
+        unknown[data[0]] = float(data[1]) 
 
     fasta = FastaOperations(input_fasta).get_sequence_dict()
 
     f_out_csv = open(f'{output_file}.csv', "w+")
     f_out_fa = open(f'{output_file}.fa', "w+")
     for hairpin in unknown:
-        if unknown[hairpin][0] >= 0.9:
-            f_out_csv.write(f'{hairpin},{fasta[hairpin]},{unknown[hairpin][0]}\n')
+        if unknown[hairpin] >= 0.9:
+            f_out_csv.write(f'{hairpin},{fasta[hairpin]},{unknown[hairpin]}\n')
             f_out_fa.write(f'>{hairpin}\n{fasta[hairpin]}\n')
 
 def usage():
@@ -30,9 +30,9 @@ def main():
         print(err)  # will print something like "option -a not recognized"
         usage()
         sys.exit(2)
-    output_file = None
+    ouput_file_prefix = None
     input_file = None
-    verbose = False
+    input_fasta = None
     for o, a in opts:
         if o in ("-h", "--help"):
             usage()
@@ -45,7 +45,7 @@ def main():
             input_fasta = a
         else:
             assert False, "Unhandled Option"
-    create_high_confidence_list(input_file,input_fasta,output_file)
+    create_high_confidence_list(input_file,input_fasta,ouput_file_prefix)
 
 if __name__ == "__main__":
     main()

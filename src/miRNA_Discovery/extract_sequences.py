@@ -46,6 +46,10 @@ def extract_sequences(file_in, file_out):
                     seq = seq + 'A'
                 elif seq_list[-(k+1)] == 'u':
                     seq = seq + 'a'
+                elif seq_list[-(k+1)] == 'N':
+                    seq = seq + 'N'
+                elif seq_list[-(k+1)] == 'n':
+                    seq = seq + 'n'
             fo.write(f'>{name}_{i}a' + "\n")
             fo.write(f'{"".join(seq_list)}\n')
             fo.write(f'>com_{name}_{i}b' + "\n")
@@ -70,12 +74,12 @@ def main():
             usage()
             sys.exit()
         elif o in ("-o", "--ouput_file"):
-            ouput_file_prefix = a
+            ouput_file_prefix = str(a)
         elif o in ("-i", "--input_file"):
-            input_file = a
+            input_file = str(a)
         else:
             assert False, "Unhandled Option"
-    extract_sequences(input_file,output_file)
+    extract_sequences(input_file,ouput_file_prefix)
 
 if __name__ == "__main__":
     main()
