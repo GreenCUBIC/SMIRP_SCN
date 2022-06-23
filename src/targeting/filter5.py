@@ -46,14 +46,13 @@ def main():
         print(err)  # will print something like "option -a not recognized"
         usage()
         sys.exit(2)
-    output = None
-    verbose = False
+    O2A_folder = None
     for o, a in opts:
         if o in ("-h", "--help"):
             usage()
             sys.exit()
         elif o in ("-a", "--O2A_folder"):
-            O2A_folder = a
+            O2A_folder = str(a)
         else:
             assert False, "Unhandled Option"
     filter5(O2A_folder)

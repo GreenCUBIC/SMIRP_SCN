@@ -1,5 +1,5 @@
 import getopt, sys
-from src.classes.FastaOperations import FastaOperations
+from FastaOperations import FastaOperations
 
 def filter2(input_file,output_folder, miRNA_fa):
     miRNA_total = FastaOperations(miRNA_fa).get_sequence_dict()
@@ -33,18 +33,19 @@ def main():
         print(err)  # will print something like "option -a not recognized"
         usage()
         sys.exit(2)
-    output = None
-    verbose = False
+    output_folder = None
+    miRNA_fa = None
+    input_file = None
     for o, a in opts:
         if o in ("-h", "--help"):
             usage()
             sys.exit()
         elif o in ("-o", "--output_folder"):
-            output_folder = a
+            output_folder = str(a)
         elif o in ("-m", "--miRNA_fasta"):
-            miRNA_fa = a
+            miRNA_fa = str(a)
         elif o in ("-i", "--input_file"):
-            input_file = a
+            input_file = str(a)
         else:
             assert False, "Unhandled Option"
     filter2(input_file,output_folder, miRNA_fa)

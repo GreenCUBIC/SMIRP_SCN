@@ -1,5 +1,5 @@
 import getopt, sys
-from src.classes.FastaOperations import FastaOperations
+from FastaOperations import FastaOperations
 
 def fix_bp(file,file_out):
     lines = open(file).readlines()
@@ -40,15 +40,14 @@ def main():
         sys.exit(2)
     output_file = None
     input_file = None
-    verbose = False
     for o, a in opts:
         if o in ("-h", "--help"):
             usage()
             sys.exit()
         elif o in ("-o", "--output"):
-            output_file = a
+            output_file = str(a)
         elif o in ("-i", "--input"):
-            input_file = a
+            input_file = str(a)
         else:
             assert False, "Unhandled Option"
     filter1(input_file,output_file)
